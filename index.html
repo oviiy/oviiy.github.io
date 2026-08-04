@@ -3,232 +3,455 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Michael Wang (Xihao) — quantitative finance." />
+  <meta name="description" content="Michael Wang (Xihao) — quantitative finance, fixed income and credit derivatives." />
   <title>Michael Wang</title>
   <style>
+    :root {
+      --text: #333;
+      --muted: #666;
+      --faint: #888;
+      --line: #e5e5e5;
+      --link: #2a7ae2;
+      --bg: #fff;
+      --sidebar-w: 240px;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+        Helvetica, Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.6;
-      color: #222;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+    /* top bar — Academic Pages style */
+    .topnav {
+      border-bottom: 1px solid var(--line);
       background: #fff;
-      max-width: 680px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topnav-inner {
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 4rem;
-    }
-
-    header {
+      padding: 0.85rem 1.5rem;
       display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e5e5e5;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem 1.25rem;
+    }
+    .topnav .name {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #222;
+      margin-right: auto;
+      letter-spacing: -0.01em;
+    }
+    .topnav .name:hover { text-decoration: none; color: var(--link); }
+    .topnav .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.15rem;
+    }
+    .topnav .nav-links a {
+      color: #777;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+    .topnav .nav-links a:hover {
+      color: #333;
+      text-decoration: none;
     }
 
+    /* layout */
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 2.25rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 2.25rem 3.25rem;
+      align-items: start;
+    }
+
+    /* sidebar */
+    .sidebar {
+      text-align: center;
+    }
     .photo {
-      width: 120px;
-      height: 120px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      flex-shrink: 0;
-      background: #f0f0f0;
+      border: 3px solid #eee;
+      margin: 0 auto 1rem;
+      display: block;
+      background: #f5f5f5;
     }
-
-    h1 {
-      font-size: 1.65rem;
+    .sidebar h1 {
+      font-size: 1.3rem;
       font-weight: 650;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      margin-bottom: 0.35rem;
+      color: #222;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+    .sidebar .tagline {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.45;
+      padding: 0 0.25rem;
     }
 
-    .subtitle {
-      color: #555;
-      font-size: 0.98rem;
-      margin-bottom: 0.75rem;
+    /* contact icons + labels */
+    .contact-list {
+      list-style: none;
+      text-align: left;
+      display: inline-block;
+      margin: 0 auto;
+      min-width: 150px;
     }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem 1rem;
-      font-size: 0.92rem;
+    .contact-list li {
+      margin-bottom: 0.6rem;
     }
-
-    a {
-      color: #0969da;
+    .contact-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .contact-list a:hover {
+      color: var(--link);
       text-decoration: none;
     }
-    a:hover { text-decoration: underline; }
-
-    h2 {
-      font-size: 0.8rem;
-      font-weight: 650;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #666;
-      margin: 1.75rem 0 0.65rem;
+    .contact-list .icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+    .contact-list .icon svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.8;
+    }
+    .contact-list a:hover .icon svg { opacity: 1; }
 
-    p { margin-bottom: 0.75rem; color: #333; }
+    /* main */
+    main { min-width: 0; }
+    main h2 {
+      font-size: 1.65rem;
+      font-weight: 650;
+      color: #222;
+      margin: 0 0 0.9rem;
+      letter-spacing: -0.02em;
+    }
+    main h2:not(:first-child) {
+      margin-top: 2.4rem;
+      padding-top: 0.2rem;
+    }
+    main p {
+      margin-bottom: 0.9rem;
+      color: #444;
+    }
+    main p:last-child { margin-bottom: 0; }
 
     .job {
-      margin-bottom: 1rem;
+      margin-bottom: 1.4rem;
     }
+    .job:last-child { margin-bottom: 0; }
     .job-title {
       font-weight: 600;
-      color: #111;
+      color: #222;
+      font-size: 1.02rem;
     }
     .job-meta {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.25rem;
+      font-size: 0.88rem;
+      color: var(--faint);
+      margin: 0.15rem 0 0.4rem;
     }
     .job p {
       font-size: 0.95rem;
-      color: #444;
       margin-bottom: 0;
     }
 
-    ul {
-      margin: 0.25rem 0 0.75rem 1.15rem;
-      color: #333;
+    .work-list {
+      list-style: none;
     }
-    li { margin-bottom: 0.35rem; }
-    li ul { margin-top: 0.25rem; margin-bottom: 0.35rem; }
+    .work-list li {
+      margin-bottom: 0.9rem;
+      color: #444;
+      font-size: 0.95rem;
+      padding-left: 0;
+    }
+    .work-list li strong {
+      color: #222;
+      font-weight: 600;
+    }
 
-    .edu { margin-bottom: 0.65rem; }
-    .edu strong { color: #111; }
+    .edu {
+      margin-bottom: 1.05rem;
+    }
+    .edu:last-child { margin-bottom: 0; }
+    .edu-school {
+      font-weight: 600;
+      color: #222;
+    }
+    .edu-detail {
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .edu-meta {
+      color: var(--faint);
+      font-size: 0.88rem;
+    }
 
     footer {
-      margin-top: 2.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid #e5e5e5;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.15rem 1.5rem 2rem;
+      border-top: 1px solid var(--line);
       font-size: 0.85rem;
-      color: #888;
+      color: var(--faint);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      align-items: center;
     }
+    footer .follow {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    footer .follow span { color: var(--faint); margin-right: 0.15rem; }
+    footer .follow a {
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    footer .follow a:hover { color: var(--link); text-decoration: none; }
+    footer .follow svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.85;
+    }
+    footer .sep { margin-left: auto; }
 
-    @media (max-width: 520px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    section { scroll-margin-top: 4rem; }
+
+    @media (max-width: 760px) {
+      .page {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        padding-top: 1.5rem;
       }
-      .links { justify-content: center; }
-      .photo { width: 110px; height: 110px; }
+      .sidebar {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      footer .sep { margin-left: 0; width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img class="photo" src="assets/michael.png" alt="Michael Wang" width="120" height="120" />
-    <div>
-      <h1>Michael Wang</h1>
-      <p class="subtitle">
-        Quantitative finance · Fixed income &amp; credit derivatives
-      </p>
-      <div class="links">
-        <a href="https://github.com/oviiy">GitHub</a>
-        <a href="https://www.linkedin.com/in/michael-wxh/">LinkedIn</a>
-        <a href="mailto:wangxihao@hotmail.com">Email</a>
-        <a href="https://github.com/oviiy/mw_lab">mw_lab</a>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a class="name" href="#top">Michael Wang</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <h2>About</h2>
-  <p>
-    I’m a quantitative analyst working on fixed income and credit models —
-    pricing, risk, and validation in production systems.
-    Currently at <strong>Clearwater Analytics</strong>; previously
-    <strong>MSCI</strong> (Berkeley), focused on CDS, credit indices, options, and tranches.
-  </p>
-  <p>
-    Background in mathematical finance (USC) and electrical engineering (UNSW).
-    Comfortable from research prototypes through client-facing model delivery.
-  </p>
+  <div class="page" id="top">
+    <aside class="sidebar">
+      <img class="photo" src="assets/michael.png" alt="Michael Wang" width="170" height="170" />
+      <h1>Michael Wang</h1>
+      <p class="tagline">
+        Quantitative finance · Fixed income &amp; credit derivatives
+      </p>
 
-  <h2>Experience</h2>
+      <!-- labeled contact links with icons (Academic Pages style) -->
+      <ul class="contact-list" id="contact">
+        <li>
+          <a href="mailto:wangxihao@hotmail.com" title="Email">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/>
+              </svg>
+            </span>
+            Email
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/michael-wxh/" target="_blank" rel="noopener" title="LinkedIn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/>
+              </svg>
+            </span>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/oviiy" target="_blank" rel="noopener" title="GitHub">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/>
+              </svg>
+            </span>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/oviiy/mw_lab" target="_blank" rel="noopener" title="mw_lab research lab">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </span>
+            mw_lab
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-  <div class="job">
-    <div class="job-title">Quantitative Financial Analyst · Clearwater Analytics</div>
-    <div class="job-meta">2026 – Present · Hybrid</div>
-    <p>
-      Fixed income quantitative research and model validation for risk and performance products —
-      calculation design, QA of model changes, and production analytics for bonds and related instruments.
-    </p>
+    <main>
+      <section id="about">
+        <h2>About me</h2>
+        <p>
+          I’m Michael (Xihao), a quantitative analyst working on
+          <strong>fixed income, credit derivatives, and model validation</strong>
+          in production systems. I care about turning market conventions and research ideas
+          into pricing and risk analytics that teams can rely on.
+        </p>
+        <p>
+          I currently work at <strong>Clearwater Analytics</strong> on fixed income quantitative research and validation.
+          Before that I was at <strong>MSCI</strong> in Berkeley, where I built and maintained credit pricing models —
+          CDS, credit indices, options, and tranches — including a bespoke / SRT tranche model from prototype to production.
+        </p>
+        <p>
+          I hold an M.S. in Mathematical Finance from <a href="https://www.usc.edu/" target="_blank" rel="noopener">USC</a>
+          and a B.E. in Electrical Engineering from
+          <a href="https://www.unsw.edu.au/" target="_blank" rel="noopener">UNSW</a>
+          (with an exchange semester at NYU).
+        </p>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+
+        <div class="job">
+          <div class="job-title">Quantitative Financial Analyst · Clearwater Analytics</div>
+          <div class="job-meta">2026 – Present · Hybrid</div>
+          <p>
+            Fixed income quantitative research and model validation for risk and performance products —
+            calculation design, QA of model changes, and production analytics for bonds and related instruments.
+          </p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Quantitative Research Senior Associate · MSCI</div>
+          <div class="job-meta">2022 – 2026 · Berkeley, CA</div>
+          <p>
+            Credit derivatives pricing models (CDS, index, options, tranches).
+            Delivered bespoke tranche / SRT to production; client coverage on sensitivities, factors, and stress.
+            Research on CDS and US debt-ceiling risk cited by Reuters and the Financial Times.
+          </p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Research Analyst Intern · Russell Investments</div>
+          <div class="job-meta">2021 · Shanghai</div>
+          <p>
+            Multi-factor research for China A-shares; big/small rotation work for tactical asset allocation.
+          </p>
+        </div>
+      </section>
+
+      <section id="work">
+        <h2>Projects</h2>
+        <ul class="work-list">
+          <li>
+            <strong><a href="http://michael-wang-msci.com" target="_blank" rel="noopener">CDS market’s view on US default</a></strong>
+            — MSCI research blog on debt-ceiling risk through CDS pricing; covered by Reuters and the FT.
+          </li>
+          <li>
+            <strong>Bespoke tranche / SRT</strong>
+            — Credit risk transfer pricing model, concept to production at MSCI.
+          </li>
+          <li>
+            <strong>Fixed income model validation</strong>
+            — Quantitative research and validation of FI calculations at Clearwater Analytics.
+          </li>
+          <li>
+            <strong><a href="https://github.com/oviiy/mw_lab/blob/main/tools/us_rotation.html" target="_blank" rel="noopener">US equity style rotation dashboard</a></strong>
+            — Interactive research view for growth/value signals and rotation analysis.
+          </li>
+          <li>
+            <strong><a href="https://github.com/oviiy/mw_lab/blob/main/tools/sleeve_research.html" target="_blank" rel="noopener">Sleeve research</a></strong>
+            — Multi-sleeve strategy signals, backtests, and walk-forward checks.
+          </li>
+          <li>
+            <strong>China A-share multi-factor / rotation</strong>
+            — Factor research and rotation work during the Russell Investments internship.
+          </li>
+        </ul>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <div class="edu">
+          <div class="edu-school">University of Southern California</div>
+          <div class="edu-detail">M.S. Mathematical Finance · GPA 3.8/4.0</div>
+          <div class="edu-meta">2021 – 2022</div>
+        </div>
+        <div class="edu">
+          <div class="edu-school">University of New South Wales</div>
+          <div class="edu-detail">B.E. Electrical Engineering · GPA 3.6/4.0 · Dean’s list</div>
+          <div class="edu-meta">2016 – 2020 · Exchange: NYU, 2019</div>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <div class="job">
-    <div class="job-title">Quantitative Research Senior Associate · MSCI</div>
-    <div class="job-meta">2022 – 2026 · Berkeley, CA</div>
-    <p>
-      Credit derivatives pricing models (CDS, index, options, tranches).
-      Took a bespoke tranche / SRT model from concept to production.
-      Research note on CDS and US debt-ceiling risk cited by Reuters and the FT.
-    </p>
-  </div>
-
-  <div class="job">
-    <div class="job-title">Research Analyst Intern · Russell Investments</div>
-    <div class="job-meta">2021 · Shanghai</div>
-    <p>
-      Multi-factor research for China A-shares; rotation strategies for tactical allocation.
-    </p>
-  </div>
-
-  <h2>Selected work</h2>
-  <ul>
-    <li>
-      <a href="http://michael-wang-msci.com">CDS market’s view on US default</a>
-      — MSCI research blog; Reuters / FT coverage
-    </li>
-    <li>
-      Bespoke tranche / SRT pricing — research to production at MSCI
-    </li>
-    <li>
-      Fixed income model validation &amp; research — Clearwater Analytics
-    </li>
-    <li>
-      <a href="https://github.com/oviiy/mw_lab/blob/main/tools/us_rotation.html">US equity style rotation dashboard</a>
-      — growth/value signals and interactive research view
-    </li>
-    <li>
-      <a href="https://github.com/oviiy/mw_lab/blob/main/tools/sleeve_research.html">Sleeve research</a>
-      — multi-sleeve strategy signals, backtests, and walk-forward checks
-    </li>
-    <li>
-      China A-share multi-factor / rotation research — Russell Investments
-    </li>
-  </ul>
-
-  <h2>Education</h2>
-  <div class="edu">
-    <strong>University of Southern California</strong><br />
-    M.S. Mathematical Finance · GPA 3.8/4.0 · 2021–2022
-  </div>
-  <div class="edu">
-    <strong>University of New South Wales</strong><br />
-    B.E. Electrical Engineering · GPA 3.6/4.0 · Dean’s list · 2016–2020<br />
-    <span style="color:#666;font-size:0.9rem">Exchange: NYU, 2019</span>
-  </div>
-
-  <h2>Contact</h2>
-  <p>
-    <a href="mailto:wangxihao@hotmail.com">wangxihao@hotmail.com</a>
-    ·
-    <a href="https://www.linkedin.com/in/michael-wxh/">LinkedIn</a>
-    ·
-    <a href="https://github.com/oviiy">GitHub</a>
-  </p>
 
   <footer>
-    © Michael Wang (Xihao)
+    <div class="follow">
+      <span>Follow:</span>
+      <a href="https://github.com/oviiy" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/michael-wxh/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:wangxihao@hotmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Email
+      </a>
+    </div>
+    <span class="sep">© Michael Wang (Xihao)</span>
   </footer>
 
 </body>
