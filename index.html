@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Michael Wang (Xihao) — quantitative finance, fixed income & credit derivatives." />
+  <title>Michael Wang · Quantitative Finance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --bg-elev: #141a22;
+      --bg-card: #171e28;
+      --line: #243041;
+      --text: #e8edf4;
+      --muted: #8b9bb0;
+      --faint: #5c6b80;
+      --accent: #5eb8a8;
+      --accent-dim: rgba(94, 184, 168, 0.12);
+      --accent-border: rgba(94, 184, 168, 0.35);
+      --max: 720px;
+      --pad: clamp(1.25rem, 4vw, 2rem);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* subtle grid wash */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(94, 184, 168, 0.08), transparent 55%),
+        radial-gradient(ellipse 40% 30% at 100% 50%, rgba(80, 120, 180, 0.04), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: var(--pad);
+      padding-bottom: 4rem;
+    }
+
+    /* nav */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+      align-items: center;
+      padding: 1.25rem 0 2rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2.75rem;
+    }
+    nav .brand {
+      font-weight: 600;
+      color: var(--text);
+      margin-right: auto;
+      letter-spacing: -0.02em;
+    }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--text); text-decoration: none; }
+
+    /* hero */
+    header.hero { margin-bottom: 3rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 3.35rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+    }
+    h1 span {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.72em;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 38em;
+      margin-bottom: 1.5rem;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--bg-elev);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .chip:hover {
+      border-color: var(--accent-border);
+      background: var(--accent-dim);
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .chip svg { width: 15px; height: 15px; opacity: 0.85; }
+
+    /* sections */
+    section {
+      margin-bottom: 2.75rem;
+      scroll-margin-top: 1.5rem;
+    }
+    h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 1rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .prose {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .prose p + p { margin-top: 0.85rem; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* experience */
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+    .job {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      transition: border-color 0.15s;
+    }
+    .job:hover { border-color: #334155; }
+    .job-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+    .job-role {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1.02rem;
+    }
+    .job-org { color: var(--accent); font-weight: 500; }
+    .job-meta {
+      width: 100%;
+      font-size: 0.82rem;
+      color: var(--faint);
+      margin-bottom: 0.55rem;
+    }
+    .job p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* projects grid */
+    .grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 560px) {
+      .grid.two { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-1px);
+    }
+    .card h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      flex: 1;
+    }
+    .card .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    a.card { color: inherit; }
+    a.card:hover { text-decoration: none; }
+    a.card h3 { color: var(--accent); }
+
+    /* edu */
+    .edu-item { margin-bottom: 1rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-school {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-deg { color: var(--muted); font-size: 0.95rem; }
+    .edu-meta { color: var(--faint); font-size: 0.85rem; margin-top: 0.15rem; }
+
+    /* skills */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .pill {
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      padding: 0.32rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      color: var(--faint);
+      font-size: 0.82rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      justify-content: space-between;
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top">MW</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="eyebrow">Open to quant research &amp; FI / credit roles</div>
+      <h1>Michael Wang <span>(Xihao)</span></h1>
+      <p class="lede">
+        Quantitative finance practitioner focused on
+        <strong style="color:var(--text);font-weight:500">fixed income, credit derivatives, and production model validation</strong>.
+        Currently a Quantitative Financial Analyst at Clearwater Analytics;
+        previously built credit pricing models at MSCI.
+      </p>
+      <div class="links" id="contact">
+        <a class="chip" href="https://github.com/oviiy" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+          GitHub
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/michael-wxh/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="chip" href="mailto:wangxihao@hotmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </a>
+        <a class="chip" href="https://github.com/oviiy/mw_lab" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          mw_lab
+        </a>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="prose">
+        <p>
+          I work at the intersection of <strong>pricing models, risk analytics, and production engineering</strong> —
+          turning market conventions and research ideas into systems that clients and product teams can trust.
+        </p>
+        <p>
+          At <strong>MSCI</strong> I spent several years on credit derivatives: CDS, index products, options, and tranches,
+          including taking a bespoke / SRT tranche model from prototype to production. A public note on
+          <a href="http://michael-wang-msci.com" target="_blank" rel="noopener">the CDS market’s view of US default risk</a>
+          was cited by Reuters and the Financial Times.
+        </p>
+        <p>
+          At <strong>Clearwater Analytics</strong> I validate and specify fixed-income and derivatives calculations,
+          with heavy use of AI-assisted tooling for tie-outs and regression checks.
+        </p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <article class="job">
+          <div class="job-top">
+            <span class="job-role">Quantitative Financial Analyst</span>
+            <span class="job-org">Clearwater Analytics</span>
+          </div>
+          <div class="job-meta">2026 – Present · Boise, ID (Hybrid)</div>
+          <p>
+            Fixed income &amp; derivatives model validation and development for Risk &amp; Performance products.
+            End-to-end QFA cases, QA of calculation changes, AI-assisted tie-outs against benchmarks.
+          </p>
+        </article>
+        <article class="job">
+          <div class="job-top">
+            <span class="job-role">Quantitative Research Senior Associate</span>
+            <span class="job-org">MSCI</span>
+          </div>
+          <div class="job-meta">2022 – 2026 · Berkeley, CA</div>
+          <p>
+            Research &amp; production ownership across credit pricing models (CDS, indices, options, tranches).
+            Delivered bespoke tranche / SRT to production; client coverage on sensitivities, factors, and stress.
+          </p>
+        </article>
+        <article class="job">
+          <div class="job-top">
+            <span class="job-role">Research Analyst Intern</span>
+            <span class="job-org">Russell Investments</span>
+          </div>
+          <div class="job-meta">2021 · Shanghai</div>
+          <p>
+            Multi-factor research for China A-shares; big/small rotation work feeding tactical asset allocation.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>Selected work</h2>
+      <div class="grid two">
+        <a class="card" href="http://michael-wang-msci.com" target="_blank" rel="noopener">
+          <span class="tag">Research · MSCI</span>
+          <h3>CDS market view on US default</h3>
+          <p>
+            Debt-ceiling analysis via CDS pricing and CTD auction intuition. Cited by Reuters &amp; FT.
+          </p>
+        </a>
+        <div class="card">
+          <span class="tag">Models · MSCI</span>
+          <h3>Bespoke tranche / SRT</h3>
+          <p>
+            Concept-to-production for significant risk transfer structures in the credit analytics stack.
+          </p>
+        </div>
+        <div class="card">
+          <span class="tag">Validation · Clearwater</span>
+          <h3>AI-assisted FI tie-outs</h3>
+          <p>
+            Claude Code / Cursor workflows for bond, TSY, MBS, and IRS calculation checks in the QA loop.
+          </p>
+        </div>
+        <a class="card" href="https://github.com/oviiy/mw_lab" target="_blank" rel="noopener">
+          <span class="tag">Open · GitHub</span>
+          <h3>mw_lab</h3>
+          <p>
+            Browser tools and demos: style rotation, sleeve research, theorem library, small sims.
+          </p>
+        </a>
+        <a class="card" href="https://github.com/oviiy/mw_obs" target="_blank" rel="noopener">
+          <span class="tag">Open · GitHub</span>
+          <h3>mw_obs</h3>
+          <p>
+            Private quant knowledge vault — credit, rates, risk notes structured for long-term use.
+          </p>
+        </a>
+        <a class="card" href="https://github.com/oviiy" target="_blank" rel="noopener">
+          <span class="tag">Profile</span>
+          <h3>More on GitHub</h3>
+          <p>
+            Additional experiments and private work under @oviiy.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="edu-item">
+        <div class="edu-school">University of Southern California</div>
+        <div class="edu-deg">M.S. Mathematical Finance · GPA 3.8/4.0</div>
+        <div class="edu-meta">2021 – 2022 · Stochastic calculus, derivatives, risk, time series</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-school">University of New South Wales</div>
+        <div class="edu-deg">B.E. Electrical Engineering · GPA 3.6/4.0 · Dean’s list</div>
+        <div class="edu-meta">2016 – 2020 · NYU exchange, 2019</div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Toolkit</h2>
+      <div class="pills">
+        <span class="pill">Credit derivatives</span>
+        <span class="pill">Fixed income</span>
+        <span class="pill">Model validation</span>
+        <span class="pill">Python</span>
+        <span class="pill">C++</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Time series</span>
+        <span class="pill">Bloomberg</span>
+        <span class="pill">AI-assisted coding</span>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="y"></span> Michael Wang</span>
+      <span>
+        <a href="mailto:wangxihao@hotmail.com">wangxihao@hotmail.com</a>
+        ·
+        <a href="https://www.linkedin.com/in/michael-wxh/" target="_blank" rel="noopener">LinkedIn</a>
+        ·
+        <a href="https://github.com/oviiy" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </footer>
+  </div>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
