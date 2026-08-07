@@ -6,6 +6,18 @@
   <meta name="description" content="Michael Wang (Xihao) — quantitative finance, fixed income and credit derivatives." />
   <title>Michael Wang</title>
   <link rel="stylesheet" href="assets/site.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (
+          t === "dark" ||
+          (!t && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches)
+        )
+          document.documentElement.setAttribute("data-theme", "dark");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -18,6 +30,14 @@
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
       </div>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -82,9 +102,10 @@
           into pricing and risk analytics that teams can rely on.
         </p>
         <p>
-          I currently work at <strong>Clearwater Analytics</strong> on fixed income quantitative research and validation.
-          Before that I was at <strong>MSCI</strong> in Berkeley, where I built and maintained credit pricing models —
-          CDS, credit indices, options, and tranches — including a bespoke / SRT tranche model from prototype to production.
+          I currently work at <strong>Clearwater Analytics</strong> on fixed income quantitative research,
+          model development, and validation. Before that I spent <strong>3.5 years at MSCI</strong> in Berkeley
+          building and maintaining credit pricing models — CDS, credit indices, options, and tranches —
+          including a bespoke / SRT tranche model from prototype to production.
         </p>
         <p>
           I hold an M.S. in Mathematical Finance from <a href="https://www.usc.edu/" target="_blank" rel="noopener">USC</a>
@@ -111,14 +132,14 @@
           <div class="job-title">Quantitative Financial Analyst · Clearwater Analytics</div>
           <div class="job-meta">2026 – Present · Hybrid</div>
           <p>
-            Fixed income quantitative research and model validation for risk and performance products —
-            calculation design, QA of model changes, and production analytics for bonds and related instruments.
+            Fixed income quantitative research, model development, and validation for risk and performance products —
+            calculation design, production analytics, and rollout of model changes for bonds and related instruments.
           </p>
         </div>
 
         <div class="job">
           <div class="job-title">Quantitative Research Senior Associate · MSCI</div>
-          <div class="job-meta">2022 – 2026 · Berkeley, CA</div>
+          <div class="job-meta">2022 – 2026 · 3.5 years · Berkeley, CA</div>
           <p>
             Credit derivatives pricing models (CDS, index, options, tranches).
             Delivered bespoke tranche / SRT to production; client coverage on sensitivities, factors, and stress.
@@ -161,5 +182,6 @@
     <span class="sep">© Michael Wang (Xihao)</span>
   </footer>
 
+  <script src="assets/theme.js"></script>
 </body>
 </html>
