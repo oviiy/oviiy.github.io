@@ -481,7 +481,6 @@ main {
   border-radius: var(--radius);
   padding: 1.65rem 1.85rem 1.9rem;
   box-shadow: var(--shadow);
-  counter-reset: section;
 }
 
 /* major sections */
@@ -516,18 +515,6 @@ main h2 {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-}
-/* section index — quiet craft detail */
-main > section > h2::before {
-  counter-increment: section;
-  content: counter(section, decimal-leading-zero);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--faint);
-  font-variant-numeric: tabular-nums;
-  min-width: 1.55rem;
-  opacity: 0.85;
 }
 main h2:not(:first-child) {
   margin-top: 0;
