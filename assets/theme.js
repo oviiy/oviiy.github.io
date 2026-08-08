@@ -6,12 +6,7 @@
       var saved = localStorage.getItem(KEY);
       if (saved === "dark" || saved === "light") return saved;
     } catch (e) {}
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      return "dark";
-    }
+    // Default: bright (light) mode — ignore system preference
     return "light";
   }
 
