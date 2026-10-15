@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Projects by Michael Wang — research tools, credit derivatives, and fixed income work." />
+  <meta name="description" content="Projects and research by Michael Wang — browser tools, games, credit derivatives, and fixed income work." />
   <title>Projects · Michael Wang Personal Site</title>
   <link rel="stylesheet" href="assets/site.css" />
   <script>
@@ -99,135 +99,83 @@
       </ul>
     </aside>
 
-    <main>
-      <h2>Projects</h2>
-      <p style="margin-bottom: 1.4rem;">
-        Selected research tools and professional work. Interactive dashboards are hosted on GitHub Pages.
-      </p>
+    <main class="portfolio-main">
+      <h2>Selected Work</h2>
+      <p class="portfolio-lede">A selection of browser projects, published research, and production quantitative work.</p>
 
+      <nav class="portfolio-jump" aria-label="Work categories">
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+      </nav>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Tools and small games built to make markets, models, and ideas easier to explore.</p>
       <div class="project-card project-card--link">
-        <h3>
-          <a href="https://www.msci.com/research-and-insights/blog-post/the-cds-market-view-on-us-default" target="_blank" rel="noopener">
-            CDS market’s view on US default
-          </a>
-        </h3>
-        <p>
-          MSCI research blog on debt-ceiling risk through CDS pricing;
-          covered by Reuters and the Financial Times.
-        </p>
-        <div class="links">
-          <a href="https://www.msci.com/research-and-insights/blog-post/the-cds-market-view-on-us-default" target="_blank" rel="noopener">Read blog ↗</a>
-        </div>
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/money-trail/" target="_blank" rel="noopener">Money Trail</a></h3>
+        <p>Bilingual data explorer for public fund-manager holdings, congressional trades, and insider filings, with transparent comparisons to SPY.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/money-trail/" target="_blank" rel="noopener">Explore the site ↗</a> <a href="https://github.com/oviiy/mw_lab/tree/main/tools/money-trail/" target="_blank" rel="noopener">Source</a></div>
       </div>
-
       <div class="project-card project-card--link">
-        <h3>
-          <a href="https://oviiy.github.io/mw_lab/tools/us_rotation.html" target="_blank" rel="noopener">
-            US equity style analysis
-          </a>
-        </h3>
-        <p>
-          Interactive research view for growth/value and style signals.
-          Pure HTML/JS dashboard from <code>mw_lab</code>.
-        </p>
-        <div class="links">
-          <a href="https://oviiy.github.io/mw_lab/tools/us_rotation.html" target="_blank" rel="noopener">Open on GitHub Pages ↗</a>
-          <a href="https://github.com/oviiy/mw_lab/blob/main/tools/us_rotation.html" target="_blank" rel="noopener">Source</a>
-        </div>
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/us_rotation.html" target="_blank" rel="noopener">US equity style analysis</a></h3>
+        <p>Interactive research dashboard for growth/value and US equity style signals.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/us_rotation.html" target="_blank" rel="noopener">Open dashboard ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/tools/us_rotation.html" target="_blank" rel="noopener">Source</a></div>
       </div>
-
       <div class="project-card project-card--link">
-        <h3>
-          <a href="https://oviiy.github.io/mw_lab/tools/sleeve_research.html" target="_blank" rel="noopener">
-            Sleeve research
-          </a>
-        </h3>
-        <p>
-          Multi-sleeve strategy signals, interactive backtests, parameter sweeps,
-          Monte Carlo, walk-forward checks, and universe exploration.
-        </p>
-        <div class="links">
-          <a href="https://oviiy.github.io/mw_lab/tools/sleeve_research.html" target="_blank" rel="noopener">Open on GitHub Pages ↗</a>
-          <a href="https://github.com/oviiy/mw_lab/blob/main/tools/sleeve_research.html" target="_blank" rel="noopener">Source</a>
-        </div>
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/sleeve_research.html" target="_blank" rel="noopener">Sleeve research</a></h3>
+        <p>Multi-sleeve strategy signals, interactive backtests, parameter sweeps, Monte Carlo, walk-forward checks, and universe exploration.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/sleeve_research.html" target="_blank" rel="noopener">Open dashboard ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/tools/sleeve_research.html" target="_blank" rel="noopener">Source</a></div>
       </div>
-
       <div class="project-card project-card--link">
-        <h3>
-          <a href="https://oviiy.github.io/mw_lab/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">
-            Arbitrage-Free Surface Lab
-          </a>
-        </h3>
-        <p>
-          Interactive lab for arbitrage-free surfaces — explore no-arbitrage constraints
-          and surface constructions in the browser.
-        </p>
-        <div class="links">
-          <a href="https://oviiy.github.io/mw_lab/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">Open on GitHub Pages ↗</a>
-          <a href="https://github.com/oviiy/mw_lab/blob/main/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">Source</a>
-        </div>
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">Arbitrage-Free Surface Lab</a></h3>
+        <p>Interactive browser lab for no-arbitrage constraints and surface construction.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">Open lab ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/tools/arb-free-surface-lab.html" target="_blank" rel="noopener">Source</a></div>
       </div>
-
       <div class="project-card project-card--link">
-        <h3>
-          <a href="https://oviiy.github.io/mw_lab/tools/credit_correlation.html" target="_blank" rel="noopener">
-            Credit base correlation
-          </a>
-        </h3>
-        <p>
-          Interactive CDX / iTraxx tranche lab — compound vs base correlation,
-          ρ inversion, and FRED-backed market snapshots. Pure HTML/JS dashboard from <code>mw_lab</code>.
-        </p>
-        <div class="links">
-          <a href="https://oviiy.github.io/mw_lab/tools/credit_correlation.html" target="_blank" rel="noopener">Open on GitHub Pages ↗</a>
-          <a href="https://github.com/oviiy/mw_lab/blob/main/tools/credit_correlation.html" target="_blank" rel="noopener">Source</a>
-        </div>
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/credit_correlation.html" target="_blank" rel="noopener">Credit base correlation</a></h3>
+        <p>CDX and iTraxx tranche lab covering compound and base correlation, rho inversion, and market snapshots.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/credit_correlation.html" target="_blank" rel="noopener">Open lab ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/tools/credit_correlation.html" target="_blank" rel="noopener">Source</a></div>
       </div>
+      <div class="project-card project-card--link">
+        <h3><a href="https://oviiy.github.io/mw_lab/games/trading-floor-87/dist/" target="_blank" rel="noopener">Open Outcry: 1987</a></h3>
+        <p>A trading game set on the S&amp;P 500 futures floor during Black Monday. Read the market, manage your book, and survive the close.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/games/trading-floor-87/dist/" target="_blank" rel="noopener">Play game ↗</a> <a href="https://github.com/oviiy/mw_lab/tree/main/games/trading-floor-87/" target="_blank" rel="noopener">Source</a></div>
+      </div>
+      <div class="project-card project-card--link">
+        <h3><a href="https://oviiy.github.io/mw_lab/games/Particell.html" target="_blank" rel="noopener">Particell</a></h3>
+        <p>A particle playground: paint materials, apply heat, and watch a small physical world emerge.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/games/Particell.html" target="_blank" rel="noopener">Play game ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/games/Particell.html" target="_blank" rel="noopener">Source</a></div>
+      </div>
+        <p class="portfolio-more">More browser projects are available in <a href="https://oviiy.github.io/mw_lab/" target="_blank" rel="noopener">mw_lab</a>.</p>
+      </section>
 
+      <section id="research">
+        <h2>Research</h2>
+        <p>Published analysis, open data, and model work in fixed income and credit.</p>
+      <div class="project-card project-card--link">
+        <h3><a href="https://oviiy.github.io/mw_lab/tools/ai-debt-tracker/web/dist/" target="_blank" rel="noopener">AI Debt Tracker</a></h3>
+        <p>Working paper and open dataset tracing AI infrastructure borrowing from SEC filings, with interactive debt maturity and asset-life analysis.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/tools/ai-debt-tracker/web/dist/" target="_blank" rel="noopener">Read research ↗</a> <a href="https://github.com/oviiy/mw_lab/tree/main/tools/ai-debt-tracker/" target="_blank" rel="noopener">Source</a></div>
+      </div>
+      <div class="project-card project-card--link">
+        <h3><a href="https://www.msci.com/research-and-insights/blog-post/the-cds-market-view-on-us-default" target="_blank" rel="noopener">CDS market’s view on US default</a></h3>
+        <p>MSCI research on debt-ceiling risk through CDS pricing, covered by Reuters and the Financial Times.</p>
+        <div class="links"><a href="https://www.msci.com/research-and-insights/blog-post/the-cds-market-view-on-us-default" target="_blank" rel="noopener">Read article ↗</a></div>
+      </div>
+      <div class="project-card project-card--link">
+        <h3><a href="https://oviiy.github.io/mw_lab/knowledge/math-finance-map.html" target="_blank" rel="noopener">Mathematical Finance Map</a></h3>
+        <p>An intuition-first guide to probability, filtrations, no-arbitrage, risk-neutral pricing, and the Black–Scholes framework.</p>
+        <div class="links"><a href="https://oviiy.github.io/mw_lab/knowledge/math-finance-map.html" target="_blank" rel="noopener">Read guide ↗</a> <a href="https://github.com/oviiy/mw_lab/blob/main/knowledge/math-finance-map.html" target="_blank" rel="noopener">Source</a></div>
+      </div>
       <div class="project-card project-card--static">
         <h3>Credit derivatives · CDS, indices &amp; tranches</h3>
-        <p>
-          Credit derivatives pricing and research at MSCI across single-name CDS, credit indices
-          (CDX / iTraxx and related Markit products), credit index options, and bespoke / SRT
-          tranches — base correlation and Gaussian copula frameworks, Black-style index option
-          pricing, and production delivery from research prototype. Familiarity with short-rate
-          models used alongside FI and credit analytics (e.g. Hull–White / BDT-style trees and
-          related one-factor setups).
-        </p>
+        <p>Pricing and research at MSCI across single-name CDS, credit indices, index options, and bespoke / SRT tranches, including production delivery from prototype.</p>
       </div>
-
       <div class="project-card project-card--static">
         <h3>Fixed income model research, development &amp; validation</h3>
-        <p>
-          Fixed income quantitative research, model development, and validation at Clearwater Analytics —
-          calculation design for bonds and related instruments, yield curve and risk analytics
-          (pricing, duration/convexity), and production rollout of model changes.
-        </p>
+        <p>Quantitative research and model validation at Clearwater Analytics for bonds and related instruments, including curve, pricing, and risk analytics.</p>
       </div>
-
-      <div class="project-card project-card--link">
-        <h3>
-          <a href="https://oviiy.github.io/mw_lab/knowledge/math-finance-map.html" target="_blank" rel="noopener">
-            Mathematical Finance Map
-          </a>
-        </h3>
-        <p>
-          Intuition-first guide to why mathematical finance is built the way it is —
-          probability, filtrations, no-arbitrage, risk-neutral pricing, and the Black–Scholes spine
-          (interactive, with KaTeX).
-        </p>
-        <div class="links">
-          <a href="https://oviiy.github.io/mw_lab/knowledge/math-finance-map.html" target="_blank" rel="noopener">Open on GitHub Pages ↗</a>
-          <a href="https://github.com/oviiy/mw_lab/blob/main/knowledge/math-finance-map.html" target="_blank" rel="noopener">Source</a>
-        </div>
-      </div>
-
-      <p style="margin-top: 1.5rem; font-size: 0.92rem; color: var(--muted, #666);">
-        More tools live under
-        <a href="https://oviiy.github.io/mw_lab/" target="_blank" rel="noopener">oviiy.github.io/mw_lab</a>
-        and the
-        <a href="https://github.com/oviiy/mw_lab" target="_blank" rel="noopener">mw_lab</a> repository.
-      </p>
+      </section>
     </main>
   </div>
 
