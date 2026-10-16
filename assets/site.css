@@ -669,31 +669,54 @@ ul.bullets li::marker {
   color: var(--muted);
   margin-bottom: 1.35rem;
 }
-.portfolio-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 1.6rem;
+.portfolio-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.65rem;
 }
-.portfolio-jump a {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
+.portfolio-tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 6rem;
+  padding: 1.05rem 1.2rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--surface-2);
   color: var(--text-strong);
-  font-size: var(--fs-sm);
-  font-weight: 600;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.portfolio-jump a:hover {
+.portfolio-tab:hover { border-color: var(--link); }
+.portfolio-tab[aria-selected="true"] {
   border-color: var(--link);
-  text-decoration: none;
+  background: var(--surface);
+  box-shadow: inset 0 -4px 0 var(--link), var(--shadow-sm);
 }
-.portfolio-main section { scroll-margin-top: 5rem; }
+.portfolio-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.portfolio-tab-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.25; }
+.portfolio-tab-subtitle { margin-top: 0.25rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.35; }
+.portfolio-main > .portfolio-panel,
+.portfolio-main > .portfolio-panel + .portfolio-panel {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.portfolio-main > .portfolio-panel + .portfolio-panel::before { content: none; }
+.portfolio-panel[hidden] { display: none; }
+.portfolio-panel > p:first-child { margin-bottom: 1.2rem; }
 .portfolio-more {
   margin-top: 1.2rem;
   color: var(--muted);
   font-size: var(--fs-sm);
+}
+@media (max-width: 480px) {
+  .portfolio-tab { min-height: 5.4rem; padding: 0.8rem; }
+  .portfolio-tab-title { font-size: 1.18rem; }
+  .portfolio-tab-subtitle { font-size: 0.77rem; }
 }
 .project-card {
   position: relative;
@@ -759,6 +782,23 @@ ul.bullets li::marker {
   transform: translateY(-1px);
   box-shadow: var(--shadow-lift);
   border-color: var(--line-section);
+}
+.project-card--featured {
+  border-color: var(--link);
+  background: linear-gradient(130deg, var(--link-soft), var(--card-top) 65%);
+  box-shadow: inset 4px 0 0 var(--link), var(--shadow-sm);
+  padding-left: 1.5rem;
+}
+.project-card--featured:hover { border-color: var(--link); }
+.project-card--featured h3 { font-size: 1.35rem; }
+.publication-label {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--link);
+  font-size: var(--fs-xs);
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /* non-clickable: plain ink title, no lift */
